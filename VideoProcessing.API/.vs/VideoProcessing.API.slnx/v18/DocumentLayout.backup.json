@@ -50,8 +50,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T13:01:38.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T13:01:38.28Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "Services\\QueueService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T13:01:13.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T13:01:13.013Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "Controllers\\VideosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T12:24:55.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T12:24:55.607Z"
             }
           ]
         }

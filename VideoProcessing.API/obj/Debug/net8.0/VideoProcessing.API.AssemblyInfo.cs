@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VideoProcessing.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1fa4a65958ecc12f5d23054eb81af5efc800cb1")]
 [assembly: System.Reflection.AssemblyProductAttribute("VideoProcessing.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VideoProcessing.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

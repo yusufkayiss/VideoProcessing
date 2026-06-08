@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Çözüm Öğeleri/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="../VideoProcessing.Worker/VideoProcessing.Worker.csproj" Id="a1bee7c1-df0d-4841-9aee-fa504445b501" />
   <Project Path="VideoProcessing.API.csproj" />
 </Solution>
