@@ -18,3 +18,8 @@ Bu proje, web uygulamalarında uzun süren ve sistemi yoran ağır işlemlerin (
 * **Yüksek Performans:** Ağır video işlemleri API'yi kilitlemez, web sitesi her zaman hızlı kalır.
 * **Ölçeklenebilirlik (Scalability):** İleride video yükleyen kullanıcı sayısı artarsa, API'ye dokunmadan mutfaktaki aşçı (Worker) sayısı artırılarak yük dengelenebilir.
 * **Veri Güvenliği (Durability):** Worker (aşçı) o an kapalı olsa bile gelen siparişler RabbitMQ kuyruğunda güvenle bekler, sistem açıldığı an kaldığı yerden eritmeye devam eder.
+
+---
+
+## 🔗 Bağlantılı Çekirdek Motor
+**Not:** Bu mimarinin arka planda video sıkıştırma, format değiştirme ve dönüştürme algoritmalarını yöneten asıl işleyici birimini incelemek için [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) reposuna göz atabilirsiniz.
