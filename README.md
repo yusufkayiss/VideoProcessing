@@ -26,32 +26,63 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 - **Scalability**: Under high traffic, additional **Worker** instances can be spawned independently to distribute processing loads without modifying the Web API.
 - **Durability**: If the worker service goes offline, incoming messages safely persist in the RabbitMQ queue until consumption resumes.
 
-### 🔗 Related Core Engine
-> 💡 **Note**: To inspect the underlying core algorithm and processing motor responsible for video compression and transcoding, visit the [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) repository.
+### 💻 Getting Started (How to Run)
 
----
+**Prerequisites:** .NET 8 SDK and Docker installed.
 
-## 📍 Türkçe
+1. **Start RabbitMQ via Docker:**
+   ```bash
+   docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+Run the Worker Service: Open a terminal in the Worker project folder and run dotnet run.
 
-### 🚀 Genel Bakış
-Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uygulamayı kilitlemesini önlemek amacıyla **Olay Güdümlü Mimari (Event-Driven Architecture)** kullanılarak geliştirilmiş asenkron backend sistemi.
+Run the Web API: Open another terminal in the API project folder and run dotnet run.
 
-### 🛠 Teknolojiler & Mimari
-- **.NET 8 (Web API)**: Video yükleme isteklerini karşılayan ve kuyruğa mesaj fırlatan **Producer (Üretici)** katmanı.
-- **.NET 8 (Worker Service)**: Arka planda kuyruğu sürekli dinleyen ve video işleme simülasyonunu yürüten **Consumer (Tüketici)** katmanı.
-- **RabbitMQ**: API ile Worker arasındaki asenkron iletişimi ve mesaj yönetimini sağlayan mesaj kuyruğu sistemi.
-- **Docker**: RabbitMQ sunucusunu izole bir konteyner içinde ayağa kaldırmak ve ortamı standartlaştırmak için kullanıldı.
+Test: Navigate to http://localhost:<port>/swagger to upload a video and watch the Worker terminal process it in the background!
 
-### ⚙️ Nasıl Çalışır?
-1. Kullanıcı API (Swagger) üzerinden bir video yükleme isteği atar.
-2. API videoyu diske kaydeder ve dosya yolunu **`video-processing-queue`** kuyruğuna mesaj olarak yayınlar.
-3. API kullanıcıya anında `200 OK (Sıraya Alındı)` yanıtı döner, kullanıcı tarayıcıda işleme sürecini beklemek zorunda kalmaz.
-4. Arka planda çalışan **Worker Service**, kuyruktaki mesajı yakalayarak asenkron biçimde işleme adımını yürütür (`%10... %50... %100`).
+🔗 Related Core Engine
+💡 Note: To inspect the underlying core algorithm and processing motor responsible for video compression and transcoding, visit the VideoCodec - Core Video Processing Engine repository.
 
-### 📈 Projenin Sağladığı Avantajlar
-- **Yüksek Performans**: Ağır video işleme yükleri API katmanını kilitlenmekten korur, web servisi sürekli hızlı kalır.
-- **Ölçeklenebilirlik (Scalability)**: Yük arttığında, API koduna dokunmadan arka plandaki Worker sayısı artırılarak yük dengelenebilir.
-- **Veri Güvenliği (Durability)**: Worker servisi kapalı olsa bile gelen istekler RabbitMQ kuyruğunda güvenle bekler, servis açıldığında eritmeye devam eder.
+📍 Türkçe
+🚀 Genel Bakış
+Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uygulamayı kilitlemesini önlemek amacıyla Olay Güdümlü Mimari (Event-Driven Architecture) kullanılarak geliştirilmiş asenkron backend sistemi.
 
-### 🔗 Bağlantılı Çekirdek Motor
-> 💡 **Not**: Bu mimarinin arka planda video sıkıştırma ve dönüştürme algoritmalarını yöneten asıl işleyici motorunu incelemek için [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) reposuna göz atabilirsiniz.
+🛠 Teknolojiler & Mimari
+.NET 8 (Web API): Video yükleme isteklerini karşılayan ve kuyruğa mesaj fırlatan Producer (Üretici) katmanı.
+
+.NET 8 (Worker Service): Arka planda kuyruğu sürekli dinleyen ve video işleme simülasyonunu yürüten Consumer (Tüketici) katmanı.
+
+RabbitMQ: API ile Worker arasındaki asenkron iletişimi ve mesaj yönetimini sağlayan mesaj kuyruğu sistemi.
+
+Docker: RabbitMQ sunucusunu izole bir konteyner içinde ayağa kaldırmak ve ortamı standartlaştırmak için kullanıldı.
+
+⚙️ Nasıl Çalışır?
+Kullanıcı API (Swagger) üzerinden bir video yükleme isteği atar.
+
+API videoyu diske kaydeder ve dosya yolunu video-processing-queue kuyruğuna mesaj olarak yayınlar.
+
+API kullanıcıya anında 200 OK (Sıraya Alındı) yanıtı döner, kullanıcı tarayıcıda işleme sürecini beklemek zorunda kalmaz.
+
+Arka planda çalışan Worker Service, kuyruktaki mesajı yakalayarak asenkron biçimde işleme adımını yürütür (%10... %50... %100).
+
+📈 Projenin Sağladığı Avantajlar
+Yüksek Performans: Ağır video işleme yükleri API katmanını kilitlenmekten korur, web servisi sürekli hızlı kalır.
+
+Ölçeklenebilirlik (Scalability): Yük arttığında, API koduna dokunmadan arka plandaki Worker sayısı artırılarak yük dengelenebilir.
+
+Veri Güvenliği (Durability): Worker servisi kapalı olsa bile gelen istekler RabbitMQ kuyruğunda güvenle bekler, servis açıldığında eritmeye devam eder.
+
+💻 Nasıl Çalıştırılır?
+Ön Koşullar: Bilgisayarınızda .NET 8 SDK ve Docker yüklü olmalıdır.
+
+RabbitMQ'yu Docker ile Başlatın:
+
+Bash
+docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+Worker Servisi Çalıştırın: Worker projesinin dizininde terminal açıp dotnet run komutunu girin.
+
+Web API'yi Çalıştırın: API projesinin dizininde yeni bir terminal açıp dotnet run komutunu girin.
+
+Test Edin: Tarayıcıda http://localhost:<port>/swagger adresine giderek video yükleme isteği atın ve arka planda Worker terminalinin isteği nasıl işlediğini izleyin!
+
+🔗 Bağlantılı Çekirdek Motor
+💡 Not: Bu mimarinin arka planda video sıkıştırma ve dönüştürme algoritmalarını yöneten asıl işleyici motorunu incelemek için VideoCodec - Core Video Processing Engine reposuna göz atabilirsiniz.
