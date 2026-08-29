@@ -26,6 +26,18 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 - **Scalability**: Under high traffic, additional **Worker** instances can be spawned independently to distribute processing loads without modifying the Web API.
 - **Durability**: If the worker service goes offline, incoming messages safely persist in the RabbitMQ queue until consumption resumes.
 
+### 💻 Getting Started (How to Run)
+
+**Prerequisites:** .NET 8 SDK and Docker installed.
+
+1. **Start RabbitMQ via Docker:**
+   ```bash
+   docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+   ```
+2. **Run the Worker Service:** Open a terminal in the Worker project folder and run `dotnet run`.
+3. **Run the Web API:** Open another terminal in the API project folder and run `dotnet run`. 
+4. **Test:** Navigate to `http://localhost:<port>/swagger` to upload a video and watch the Worker terminal process it in the background!
+
 ### 🔗 Related Core Engine
 > 💡 **Note**: To inspect the underlying core algorithm and processing motor responsible for video compression and transcoding, visit the [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) repository.
 
@@ -53,6 +65,17 @@ Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uy
 - **Ölçeklenebilirlik (Scalability)**: Yük arttığında, API koduna dokunmadan arka plandaki Worker sayısı artırılarak yük dengelenebilir.
 - **Veri Güvenliği (Durability)**: Worker servisi kapalı olsa bile gelen istekler RabbitMQ kuyruğunda güvenle bekler, servis açıldığında eritmeye devam eder.
 
+### 💻 Nasıl Çalıştırılır?
+
+**Ön Koşullar:** Bilgisayarınızda .NET 8 SDK ve Docker yüklü olmalıdır.
+
+1. **RabbitMQ'yu Docker ile Başlatın:**
+   ```bash
+   docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+   ```
+2. **Worker Servisi Çalıştırın:** Worker projesinin dizininde terminal açıp `dotnet run` komutunu girin.
+3. **Web API'yi Çalıştırın:** API projesinin dizininde yeni bir terminal açıp `dotnet run` komutunu girin.
+4. **Test Edin:** Tarayıcıda `http://localhost:<port>/swagger` adresine giderek video yükleme isteği atın ve arka planda Worker terminalinin isteği nasıl işlediğini izleyin!
+
 ### 🔗 Bağlantılı Çekirdek Motor
 > 💡 **Not**: Bu mimarinin arka planda video sıkıştırma ve dönüştürme algoritmalarını yöneten asıl işleyici motorunu incelemek için [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) reposuna göz atabilirsiniz.
-> 
