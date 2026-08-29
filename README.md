@@ -33,7 +33,7 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 1. **Start RabbitMQ via Docker:**
    ```bash
    docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
-Run the Worker Service: Open a terminal in the Worker project folder and run dotnet run.
+   Run the Worker Service: Open a terminal in the Worker project folder and run dotnet run.
 
 Run the Web API: Open another terminal in the API project folder and run dotnet run.
 
@@ -41,7 +41,6 @@ Test: Navigate to http://localhost:<port>/swagger to upload a video and watch th
 
 🔗 Related Core Engine
 💡 Note: To inspect the underlying core algorithm and processing motor responsible for video compression and transcoding, visit the VideoCodec - Core Video Processing Engine repository.
-
 📍 Türkçe
 🚀 Genel Bakış
 Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uygulamayı kilitlemesini önlemek amacıyla Olay Güdümlü Mimari (Event-Driven Architecture) kullanılarak geliştirilmiş asenkron backend sistemi.
