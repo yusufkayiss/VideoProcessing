@@ -1,5 +1,7 @@
 # 🎬 VideoProcessing - Asynchronous Video Processing Architecture (.NET 8 & RabbitMQ)
 
+[![.NET 8 CI](https://github.com/yusufkayiss/VideoProcessing/actions/workflows/dotnet.yml/badge.svg)](https://github.com/yusufkayiss/VideoProcessing/actions/workflows/dotnet.yml)
+
 Asynchronous backend architecture built with .NET 8, RabbitMQ, Docker, and Worker Services for non-blocking video processing.
 
 ---
@@ -13,7 +15,7 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 - **.NET 8 (Web API)**: Serves as the **Producer** layer that receives video upload requests and dispatches messages to the broker.
 - **.NET 8 (Worker Service)**: Operates as the **Consumer** layer, running in the background to listen to queues and process video simulation tasks.
 - **RabbitMQ**: The message broker driving asynchronous communication and queue management between the API and Worker.
-- **Docker**: Used to run RabbitMQ inside an isolated container for simplified deployment and environment setup.
+- **Docker & Docker Compose**: Multi-container containerization for automated local setup and orchestration.
 
 ### ⚙️ How It Works
 1. The client uploads a video payload via the Web API (Swagger).
@@ -28,18 +30,15 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 
 ### 💻 Getting Started (How to Run)
 
-**Prerequisites:** .NET 8 SDK and Docker installed.
+**Prerequisites:** Docker Desktop installed.
 
-1. **Start RabbitMQ via Docker:**
-   ```bash
-   docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
-   ```
-2. **Run the Worker Service:** Open a terminal in the Worker project folder and run `dotnet run`.
-3. **Run the Web API:** Open another terminal in the API project folder and run `dotnet run`. 
-4. **Test:** Navigate to `http://localhost:<port>/swagger` to upload a video and watch the Worker terminal process it in the background!
-
-### 🔗 Related Core Engine
-> 💡 **Note**: To inspect the underlying core algorithm and processing motor responsible for video compression and transcoding, visit the [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) repository.
+**One-Command Setup (Recommended):**
+Run the following command in the root directory to build and start API, Worker, and RabbitMQ simultaneously:
+```bash
+docker-compose up --build
+```
+- **Web API Swagger**: `http://localhost:8080/swagger`
+- **RabbitMQ Management Dashboard**: `http://localhost:15672` (Guest / Guest)
 
 ---
 
@@ -52,7 +51,7 @@ Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uy
 - **.NET 8 (Web API)**: Video yükleme isteklerini karşılayan ve kuyruğa mesaj fırlatan **Producer (Üretici)** katmanı.
 - **.NET 8 (Worker Service)**: Arka planda kuyruğu sürekli dinleyen ve video işleme simülasyonunu yürüten **Consumer (Tüketici)** katmanı.
 - **RabbitMQ**: API ile Worker arasındaki asenkron iletişimi ve mesaj yönetimini sağlayan mesaj kuyruğu sistemi.
-- **Docker**: RabbitMQ sunucusunu izole bir konteyner içinde ayağa kaldırmak ve ortamı standartlaştırmak için kullanıldı.
+- **Docker & Docker Compose**: API, Worker ve RabbitMQ servislerini tek komutla orkestre etmek için kullanılan konteyner mimarisi.
 
 ### ⚙️ Nasıl Çalışır?
 1. Kullanıcı API (Swagger) üzerinden bir video yükleme isteği atar.
@@ -67,15 +66,15 @@ Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uy
 
 ### 💻 Nasıl Çalıştırılır?
 
-**Ön Koşullar:** Bilgisayarınızda .NET 8 SDK ve Docker yüklü olmalıdır.
+**Ön Koşullar:** Bilgisayarınızda Docker Desktop yüklü olmalıdır.
 
-1. **RabbitMQ'yu Docker ile Başlatın:**
-   ```bash
-   docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
-   ```
-2. **Worker Servisi Çalıştırın:** Worker projesinin dizininde terminal açıp `dotnet run` komutunu girin.
-3. **Web API'yi Çalıştırın:** API projesinin dizininde yeni bir terminal açıp `dotnet run` komutunu girin.
-4. **Test Edin:** Tarayıcıda `http://localhost:<port>/swagger` adresine giderek video yükleme isteği atın ve arka planda Worker terminalinin isteği nasıl işlediğini izleyin!
+**Tek Komutla Çalıştırma (Önerilen):**
+Ana dizinde aşağıdaki komutu çalıştırarak API, Worker ve RabbitMQ servislerini aynı anda ayağa kaldırabilirsiniz:
+```bash
+docker-compose up --build
+```
+- **Web API Swagger Arayüzü**: `http://localhost:8080/swagger`
+- **RabbitMQ Yönetim Paneli**: `http://localhost:15672` (Kullanıcı Adı / Şifre: guest)
 
 ### 🔗 Bağlantılı Çekirdek Motor
 > 💡 **Not**: Bu mimarinin arka planda video sıkıştırma ve dönüştürme algoritmalarını yöneten asıl işleyici motorunu incelemek için [VideoCodec - Core Video Processing Engine](https://github.com/yusufkayiss/VideoCodec) reposuna göz atabilirsiniz.
