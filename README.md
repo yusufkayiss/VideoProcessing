@@ -14,7 +14,7 @@ An event-driven backend system developed to offload heavy, CPU-intensive tasks (
 ### 🛠 Tech Stack & Architecture
 
 ```mermaid
-graph TD
+graph LR
     Client[Client / Swagger] -->|1. POST /upload| API[.NET 8 Web API]
     API -->|2. Save Raw File| Disk[(Local Disk)]
     API -->|3. Publish Event| MQ[RabbitMQ Broker]
@@ -61,7 +61,7 @@ Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uy
 ### 🛠 Teknolojiler & Mimari
 
 ```mermaid
-graph TD
+graph LR
     Client[İstemci / Swagger] -->|1. POST /upload| API[.NET 8 Web API]
     API -->|2. Ham Dosyayı Kaydet| Disk[(Lokal Disk)]
     API -->|3. Mesaj Yayınla| MQ[RabbitMQ Broker]
