@@ -12,6 +12,17 @@ Asynchronous backend architecture built with .NET 8, RabbitMQ, Docker, and Worke
 An event-driven backend system developed to offload heavy, CPU-intensive tasks (such as video transcoding and compression) from the primary API, ensuring maximum application responsiveness and zero thread blocking.
 
 ### 🛠 Tech Stack & Architecture
+
+```mermaid
+graph TD
+    Client[Client / Swagger] -->|1. POST /upload| API[.NET 8 Web API]
+    API -->|2. Save Raw File| Disk[(Local Disk)]
+    API -->|3. Publish Event| MQ[RabbitMQ Broker]
+    API -->|4. 202 Accepted| Client
+    MQ -->|5. Consume Task| Worker[.NET 8 Worker Service]
+    Worker -->|6. Process Video| Disk
+```
+
 - **.NET 8 (Web API)**: Serves as the **Producer** layer that receives video upload requests and dispatches messages to the broker.
 - **.NET 8 (Worker Service)**: Operates as the **Consumer** layer, running in the background to listen to queues and process video simulation tasks.
 - **RabbitMQ**: The message broker driving asynchronous communication and queue management between the API and Worker.
@@ -48,6 +59,17 @@ docker-compose up --build
 Web uygulamalarında video işleme gibi zaman alan ağır operasyonların ana uygulamayı kilitlemesini önlemek amacıyla **Olay Güdümlü Mimari (Event-Driven Architecture)** kullanılarak geliştirilmiş asenkron backend sistemi.
 
 ### 🛠 Teknolojiler & Mimari
+
+```mermaid
+graph TD
+    Client[İstemci / Swagger] -->|1. POST /upload| API[.NET 8 Web API]
+    API -->|2. Ham Dosyayı Kaydet| Disk[(Lokal Disk)]
+    API -->|3. Mesaj Yayınla| MQ[RabbitMQ Broker]
+    API -->|4. 202 Sıraya Alındı| Client
+    MQ -->|5. Görevi Tüket| Worker[.NET 8 Worker Service]
+    Worker -->|6. Videoyu İşle| Disk
+```
+
 - **.NET 8 (Web API)**: Video yükleme isteklerini karşılayan ve kuyruğa mesaj fırlatan **Producer (Üretici)** katmanı.
 - **.NET 8 (Worker Service)**: Arka planda kuyruğu sürekli dinleyen ve video işleme simülasyonunu yürüten **Consumer (Tüketici)** katmanı.
 - **RabbitMQ**: API ile Worker arasındaki asenkron iletişimi ve mesaj yönetimini sağlayan mesaj kuyruğu sistemi.
